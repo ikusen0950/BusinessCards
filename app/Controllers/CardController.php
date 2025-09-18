@@ -28,8 +28,13 @@ class CardController extends BaseController
         $user->card_views = ($user->card_views ?? 0) + 1;
         $user->card_last_opened_at = date('Y-m-d H:i:s');
         $userModel->save($user);
-        if (strtolower($user->card_theme) === 'finolhu') {
+        $theme = strtolower($user->card_theme);
+        if ($theme === 'finolhu') {
             return view('card/bc_finolhu', ['user' => $user]);
+        } elseif ($theme === 'finolhu_here') {
+            return view('card/bc_finolhu_here', ['user' => $user]);
+        } elseif ($theme === 'here') {
+            return view('card/bc_here', ['user' => $user]);
         }
         return view('card/show', ['user' => $user]);
     }

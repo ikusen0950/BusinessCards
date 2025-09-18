@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Business Card - Finolhu</title>
+    <title>Business Card - .Here</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <script src="https://kit.fontawesome.com/734445d7bc.js" crossorigin="anonymous"></script>
@@ -28,54 +28,58 @@
     }
 
     @font-face {
-        font-family: 'Gill Sans Nova Book';
-        src: url('/assets/media/fonts/Gill_Sans_Nova_Book.otf') format('opentype');
+        font-family: 'Moeda';
+        src: url('/assets/media/fonts/Moeda.otf') format('opentype');
         font-weight: normal;
         font-style: normal;
     }
 
     @font-face {
-        font-family: 'Gill Sans Nova Medium';
-        src: url('/assets/media/fonts/Gill_Sans_Nova_Medium.otf') format('opentype');
+        font-family: 'Open Sans Regular';
+        src: url('/assets/media/fonts/Open_Sans_Regular.otf') format('opentype');
         font-weight: normal;
         font-style: normal;
     }
 
     .bc-card {
-        width: 100%;
-        max-width: 400px;
-        height: 250px;
-        margin: 40px auto;
-        background: #ecede8;
-        border: 15px solid #fff;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-        padding: 32px 32px 16px 32px;
-        position: relative;
-        /* Removed flexbox centering to keep content left-aligned */
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+    margin: 40px auto 0 auto;
+    background: #fff;
+    border: none;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    padding: 0;
+    position: relative;
+    /* Removed flexbox centering to keep content left-aligned */
     }
 
     .bc-name {
-        color: #38a8bb;
+        color: #c1b4aa;
         font-weight: bold;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         margin-top: -15px;
-        margin-bottom: 0.1rem;
-        font-family: 'Gill Sans Nova Book', Arial, sans-serif;
+        margin-top: 5px;
+        margin-left: 20px;
+        /* margin-bottom: 0.1rem; */
+        font-family: 'Moeda', Arial, sans-serif;
     }
 
     .bc-title {
         letter-spacing: 2px;
-        color: #231f20;
+        color: #c1b4aa;
         font-size: 0.9rem;
         margin-bottom: 0.1rem;
-        font-family: 'Gill Sans Nova Medium', Arial, sans-serif;
+        margin-left: 20px;
+        font-family: 'Open Sans Regular', Arial, sans-serif;
     }
 
     .bc-contact {
-        color: #57585a;
+        color: #c1b4aa;
         font-size: 0.9rem;
         margin-bottom: 2.2rem;
-        font-family: 'Gill Sans Nova Medium', Arial, sans-serif;
+        margin-left: 20px;
+        font-family: 'Open Sans Regular', Arial, sans-serif;
     }
 
     .bc-logo {
@@ -89,27 +93,27 @@
         .bc-card {
             margin: 150px auto 4px auto;
             height: auto;
-            padding: 16px 8px 8px 8px;
+            /* padding: 16px 8px 8px 8px; */
         }
 
         .bc-name {
-            margin-top: 1px;
-            margin-left: 10px;
+            margin-top: 5px;
+            margin-left: 20px;
         }
 
         .bc-title,
         .bc-contact {
-            margin-left: 10px;
+            margin-left: 20px;
         }
     }
 
     #fab {
-        background-color: #38a8bb !important;
-        border-color: #38a8bb !important;
+        background-color: #c1b4aa !important;
+        border-color: #c1b4aa !important;
     }
 
     #saveToPhoneBtn {
-        border-color: #38a8bb !important;
+        border-color: #c1b4aa !important;
     }
 
     #copyLinkBtn .bi {
@@ -119,43 +123,48 @@
 
     /* Social icons color */
     .facebook a i {
-        color: #38a8bb;
+        color: #c1b4aa;
     }
 
     .twitter a i {
-        color: #38a8bb;
+        color: #c1b4aa;
     }
 
     .youtube a i {
-        color: #38a8bb;
+        color: #c1b4aa;
     }
 
     .instagram a i {
-        color: #38a8bb;
+        color: #c1b4aa;
     }
     </style>
 
 </head>
 
 <body>
-    <div class="bc-card position-relative">
-        <div class="bc-name"><?= esc($user->username) ?></div>
-        <div class="bc-title"><?= strtoupper(esc($user->job_title)) ?></div>
-        <div class="bc-contact">
-            Phone <?php
-                // Format phone number as +960 730 6700
-                $phone = $user->phone;
-                if (preg_match('/^(\+\d{3})(\d{3})(\d{4})$/', $phone, $matches)) {
-                    $formattedPhone = $matches[1] . ' ' . $matches[2] . ' ' . $matches[3];
-                } else {
-                    $formattedPhone = $phone;
-                }
-            ?><?= esc($formattedPhone) ?> &bull; <?= esc($user->email) ?>
+    <div class="bc-card position-relative" style="display: flex; flex-direction: row; align-items: stretch;">
+        <div style="width: 50px; height: 250px; overflow: hidden; margin: 0; padding: 0;">
+            <img src="/assets/media/logo/Picture.jpg" alt="Left Image" style="width: 50px; height: 250px; object-fit: cover; display: block; margin: 0; padding: 0;">
         </div>
-        <div class="row mt-2">
-            <div class="col-6"></div>
-            <div class="col-6">
-                <img src="/assets/media/logo/finolhu.png" alt="Logo" class="bc-logo">
+        <div style="flex: 1; padding-left: 0;">
+            <div class="bc-name"><?= esc($user->username) ?></div>
+            <div class="bc-title"><?= strtoupper(esc($user->job_title)) ?></div>
+            <div class="bc-contact">
+                Phone <?php
+                    // Format phone number as +960 730 6700
+                    $phone = $user->phone;
+                    if (preg_match('/^(\+\d{3})(\d{3})(\d{4})$/', $phone, $matches)) {
+                        $formattedPhone = $matches[1] . ' ' . $matches[2] . ' ' . $matches[3];
+                    } else {
+                        $formattedPhone = $phone;
+                    }
+                ?><?= esc($formattedPhone) ?> &bull; <?= esc($user->email) ?>
+            </div>
+            <div class="row" style="margin-top: 5px;">
+                <div class="col-6"></div>
+                <div class="col-6">
+                    <img src="/assets/media/logo/here.png" alt="Logo" class="bc-logo mt-4">
+                </div>
             </div>
         </div>
     </div>
@@ -185,7 +194,7 @@
         </ul>
         <div class="mt-3">
             <a href="<?= site_url('card/' . $user->card_token . '/vcard.vcf') ?>" class="btn mb-2" id="saveToPhoneBtn"
-                style="background-color: #38a8bb; color: #fff; width: 250px;">Save to Phone</a><br>
+                style="background-color: #c1b4aa; color: #fff; width: 250px;">Save to Phone</a><br>
             <button type="button" class="btn btn-secondary" id="copyLinkBtn" style="width: 250px; height: 40px;">
                 <span class="bi bi-copy align-middle"></span> <span class="align-middle">Copy Link</span>
             </button>
