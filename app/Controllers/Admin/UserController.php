@@ -36,7 +36,7 @@ class UserController extends BaseController
         $userModel = new UserModel();
         $data = $this->request->getPost();
         // Only keep allowed fields
-    $fields = ['email', 'full_name', 'job_title', 'company', 'address', 'phone', 'website', 'card_theme', 'vcard_note', 'card_token', 'card_token_expires_at', 'card_views', 'card_last_opened_at'];
+        $fields = ['email', 'full_name', 'job_title', 'company', 'address', 'phone', 'website', 'card_theme', 'vcard_note', 'card_token', 'card_views'];
         $filtered = array_intersect_key($data, array_flip($fields));
         // Set username to full_name and password to Admin@123
         $filtered['username'] = $filtered['full_name'];
@@ -65,7 +65,7 @@ class UserController extends BaseController
         $data = $this->request->getPost();
         // Debug: log incoming data and filtered fields
         log_message('debug', 'UserController update POST data: ' . json_encode($data));
-    $fields = ['email', 'full_name', 'job_title', 'company', 'address', 'phone', 'website', 'card_theme', 'vcard_note', 'card_token', 'card_token_expires_at', 'card_views', 'card_last_opened_at'];
+        $fields = ['email', 'full_name', 'job_title', 'company', 'address', 'phone', 'website', 'card_theme', 'vcard_note', 'card_token',  'card_views'];
         $filtered = array_intersect_key($data, array_flip($fields));
         log_message('debug', 'UserController update filtered data: ' . json_encode($filtered));
         if (!empty($filtered)) {
@@ -89,11 +89,11 @@ class UserController extends BaseController
 
     public function regenerateToken($id)
     {
-    $userModel = new UserModel();
-    $uuid = $this->generateUUID();
-    $newToken = $uuid . '-' . $uuid;
-    $userModel->update($id, ['card_token' => $newToken]);
-    return redirect()->to('/admin/users')->with('success', 'Token regenerated');
+        $userModel = new UserModel();
+        $uuid = $this->generateUUID();
+        $newToken = $uuid . '-' . $uuid;
+        $userModel->update($id, ['card_token' => $newToken]);
+        return redirect()->to('/admin/users')->with('success', 'Token regenerated');
     }
 
     public function upload($id)

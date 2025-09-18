@@ -74,7 +74,7 @@
 
     @media (max-width: 576px) {
         .bc-card {
-            margin: 20px auto 4px auto;
+            margin: 150px auto 4px auto;
             height: auto;
             padding: 16px 8px 8px 8px;
         }
