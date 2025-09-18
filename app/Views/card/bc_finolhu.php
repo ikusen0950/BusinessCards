@@ -19,6 +19,9 @@
         border-bottom: none !important;
         background: none !important;
         box-shadow: none !important;
+        -webkit-text-decoration-skip: none !important;
+        -webkit-text-decoration: none !important;
+        -webkit-tap-highlight-color: transparent !important;
     }
     body {
         background: #f7f7f7;
@@ -139,7 +142,15 @@
         <div class="bc-name"><?= esc($user->username) ?></div>
         <div class="bc-title"><?= strtoupper(esc($user->job_title)) ?></div>
         <div class="bc-contact">
-            Phone <?= esc($user->phone) ?> &bull; <?= esc($user->email) ?>
+            Phone <?php
+                // Format phone number as +960 730 6700
+                $phone = $user->phone;
+                if (preg_match('/^(\+\d{3})(\d{3})(\d{4})$/', $phone, $matches)) {
+                    $formattedPhone = $matches[1] . ' ' . $matches[2] . ' ' . $matches[3];
+                } else {
+                    $formattedPhone = $phone;
+                }
+            ?><?= esc($formattedPhone) ?> &bull; <?= esc($user->email) ?>
         </div>
         <div class="row mt-2">
             <div class="col-6"></div>
