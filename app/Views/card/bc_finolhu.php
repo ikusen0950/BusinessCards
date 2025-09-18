@@ -80,7 +80,7 @@
         }
 
         .bc-name {
-            margin-top: 1The email field must contain a unique value.px;
+            margin-top: 1px;
             margin-left: 10px;
         }
 
@@ -163,10 +163,10 @@
             </li>
         </ul>
         <div class="mt-3">
-            <a href="<?= site_url('card/' . $user->card_token . '/vcard.vcf') ?>" class="btn" id="saveToPhoneBtn"
-                style="background-color: #38a8bb; color: #fff; margin-right: 10px;">Save to Phone</a>
-            <button type="button" class="btn btn-secondary" id="copyLinkBtn">
-                <span class="bi bi-copy"></span>
+            <a href="<?= site_url('card/' . $user->card_token . '/vcard.vcf') ?>" class="btn mb-2" id="saveToPhoneBtn"
+                style="background-color: #38a8bb; color: #fff; width: 250px;">Save to Phone</a><br>
+            <button type="button" class="btn btn-secondary" id="copyLinkBtn" style="width: 250px; height: 40px;">
+                <span class="bi bi-copy align-middle"></span> <span class="align-middle">Copy Link</span>
             </button>
         </div>
     </div>
@@ -180,7 +180,7 @@ document.getElementById('copyLinkBtn').addEventListener('click', function() {
     navigator.clipboard.writeText(link).then(function() {
         document.getElementById('copyLinkBtn').textContent = 'Copied!';
         setTimeout(function() {
-            document.getElementById('copyLinkBtn').textContent = 'Copy Card Link';
+            document.getElementById('copyLinkBtn').textContent = 'Copy Link';
         }, 1500);
     });
 });

@@ -12,7 +12,7 @@ class CardController extends BaseController
     {
         $userModel = new UserModel();
         $user = $userModel->where('card_token', $token)
-            ->where('(card_token_expires_at IS NULL OR card_token_expires_at = "0000-00-00 00:00:00" OR card_token_expires_at > NOW())')
+            ->where('(card_token_expires_at IS NULL OR card_token_expires_at > NOW())')
             ->first();
         if (!$user) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Card not found or expired');
