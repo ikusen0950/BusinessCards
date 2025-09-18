@@ -14,7 +14,7 @@ class VCardBuilder
         $lines[] = 'FN:' . esc($u->username);
         if ($u->job_title) $lines[] = 'TITLE:' . esc($u->job_title);
         if ($u->company) $lines[] = 'ORG:' . esc($u->company);
-        if ($u->phone) $lines[] = 'TEL;TYPE=CELL:' . esc($u->getPhoneDigits());
+    if ($u->phone) $lines[] = 'TEL;TYPE=CELL:' . esc($u->phone);
         if ($u->email) $lines[] = 'EMAIL:' . esc($u->email);
         if ($u->website) $lines[] = 'URL:' . esc($u->website);
         if ($u->location) $lines[] = 'ADR;TYPE=WORK:' . esc($u->location);
