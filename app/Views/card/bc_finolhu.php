@@ -10,6 +10,11 @@
     <script src="https://kit.fontawesome.com/734445d7bc.js" crossorigin="anonymous"></script>
 
     <style>
+    /* Remove underline from phone and email links */
+    .bc-contact a {
+        text-decoration: none !important;
+        color: inherit;
+    }
     body {
         background: #f7f7f7;
     }
