@@ -11,9 +11,14 @@
 
     <style>
     /* Remove underline from phone and email links */
-    .bc-contact a {
+    .bc-contact a,
+    .bc-contact a[href^="tel"],
+    .bc-contact a[href^="mailto"] {
         text-decoration: none !important;
-        color: inherit;
+        color: inherit !important;
+        border-bottom: none !important;
+        background: none !important;
+        box-shadow: none !important;
     }
     body {
         background: #f7f7f7;
