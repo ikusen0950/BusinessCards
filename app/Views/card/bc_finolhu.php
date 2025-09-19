@@ -170,7 +170,7 @@
             </li>
             <li class="list-inline-item twitter" style="margin-left: 20px; font-size: 2rem;">
                 <a href="http://twitter.com/finolhumv" target="_blank" title="Twitter">
-                    <i class="fab fa-twitter"></i>
+                    <i class="fa-brands fa-square-x-twitter"></i>
                 </a>
             </li>
             <li class="list-inline-item youtube" style="margin-left: 20px; font-size: 2rem;">
