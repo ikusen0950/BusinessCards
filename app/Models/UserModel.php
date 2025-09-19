@@ -20,7 +20,7 @@ class UserModel extends Model
         'email', 'username', 'full_name', 'password_hash', 'reset_hash', 'reset_at', 'reset_expires', 'activate_hash',
         'status', 'status_message', 'active', 'force_pass_reset', 'permissions', 'deleted_at',
         'job_title', 'company', 'address', 'phone', 'website', 'card_theme', 'vcard_note',
-        'card_token', 'card_token_expires_at', 'card_views', 'card_last_opened_at',
+        'card_token', 'card_token_expires_at', 'card_views', 'card_last_opened_at', 'qrcode_path',
     ];
     protected $useTimestamps   = true;
     protected $validationRules = [

@@ -55,6 +55,18 @@
                 </div>
                 <hr>
                 <div class="row g-3 mb-2">
+                    <div class="col-md-12">
+                        <label class="form-label">QR Code Image</label>
+                        <input type="file" name="qrcode" class="form-control" accept="image/*">
+                        <?php if (!empty($user->qrcode_path)): ?>
+                            <div class="mt-2">
+                                <img src="<?= esc($user->qrcode_path) ?>" alt="QR Code" style="max-width:120px; height:auto;">
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <hr>
+                <div class="row g-3 mb-2">
                     <div class="col-md-6">
                         <label class="form-label">Card Theme</label>
                         <select name="card_theme" class="form-select">

@@ -65,8 +65,21 @@ class UserController extends BaseController
         $data = $this->request->getPost();
         // Debug: log incoming data and filtered fields
         log_message('debug', 'UserController update POST data: ' . json_encode($data));
-        $fields = ['email', 'full_name', 'job_title', 'company', 'address', 'phone', 'website', 'card_theme', 'vcard_note', 'card_token',  'card_views'];
+        $fields = ['email', 'full_name', 'job_title', 'company', 'address', 'phone', 'website', 'card_theme', 'vcard_note', 'card_token',  'card_views', 'qrcode_path'];
         $filtered = array_intersect_key($data, array_flip($fields));
+
+        // Handle QR code upload
+        $qrcodeFile = $this->request->getFile('qrcode');
+        if ($qrcodeFile && $qrcodeFile->isValid() && !$qrcodeFile->hasMoved()) {
+            $newName = 'qr_' . $id . '_' . time() . '.' . $qrcodeFile->getExtension();
+            $uploadPath = FCPATH . 'assets/media/qrcodes/';
+            if (!is_dir($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
+            $qrcodeFile->move($uploadPath, $newName);
+            $filtered['qrcode_path'] = '/assets/media/qrcodes/' . $newName;
+        }
+
         log_message('debug', 'UserController update filtered data: ' . json_encode($filtered));
         if (!empty($filtered)) {
             $filtered['id'] = $id;

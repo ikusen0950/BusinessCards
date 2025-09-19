@@ -23,6 +23,7 @@
         -webkit-text-decoration: none !important;
         -webkit-tap-highlight-color: transparent !important;
     }
+
     body {
         background: #f7f7f7;
     }
@@ -182,15 +183,41 @@
                     <i class="fab fa-instagram"></i>
                 </a>
             </li>
+            <li class="list-inline-item instagram" style="margin-left: 20px; font-size: 2rem;">
+                <a href="https://www.finolhu.com" target="_blank" title="Website">
+                    <i class="fa-solid fa-globe"></i>
+                </a>
+            </li>
         </ul>
-        <div class="mt-3">
-            <a href="<?= site_url('card/' . $user->card_token . '/vcard.vcf') ?>" class="btn mb-2" id="saveToPhoneBtn"
-                style="background-color: #38a8bb; color: #fff; width: 250px;">Save to Phone</a><br>
-            <button type="button" class="btn btn-secondary" id="copyLinkBtn" style="width: 250px; height: 40px;">
-                <span class="bi bi-copy align-middle"></span> <span class="align-middle">Copy Link</span>
+
+        <div class="mt-3 d-flex justify-content-center gap-2">
+            <a href="<?= site_url('card/' . $user->card_token . '/vcard.vcf') ?>" class="btn" id="saveToPhoneBtn"
+                style="background-color: #38a8bb; color: #fff; width: 140px;">Save to Phone</a>
+            <button type="button" class="btn" id="copyLinkBtn"
+                style="background-color: #38a8bb; color: #fff; width: 100px; height: 40px;">
+                Copy Link
+            </button>
+            <button type="button" class="btn" id="qrCodeBtn"
+                style="background-color: #38a8bb; color: #fff; width: 100px; height: 40px;">
+                QR Code
             </button>
         </div>
-    </div>
+
+        <!-- QR Code Modal -->
+        <div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="qrCodeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="qrCodeModalLabel">QR Code</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img src="<?= esc($user->qrcode_path ?? '/assets/media/logo/default_qr.png') ?>" alt="QR Code"
+                            style="max-width: 100%; height: auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -204,6 +231,12 @@ document.getElementById('copyLinkBtn').addEventListener('click', function() {
             document.getElementById('copyLinkBtn').textContent = 'Copy Link';
         }, 1500);
     });
+});
+
+// Show QR code modal
+document.getElementById('qrCodeBtn').addEventListener('click', function() {
+    var qrModal = new bootstrap.Modal(document.getElementById('qrCodeModal'));
+    qrModal.show();
 });
 </script>
 
