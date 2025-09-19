@@ -59,10 +59,8 @@
                         <label class="form-label">Card Theme</label>
                         <select name="card_theme" class="form-select">
                             <option value="">Select theme</option>
-                            <option value="minimal" <?= isset($user) && $user->card_theme=='minimal' ? 'selected' : '' ?>>Minimal</option>
-                            <option value="detailed" <?= isset($user) && $user->card_theme=='detailed' ? 'selected' : '' ?>>Detailed</option>
-                            <option value="here" <?= isset($user) && $user->card_theme=='.here' ? 'selected' : '' ?>>.Here</option>
                             <option value="finolhu" <?= isset($user) && $user->card_theme=='finolhu' ? 'selected' : '' ?>>Finolhu</option>
+                            <option value="here" <?= isset($user) && $user->card_theme=='here' ? 'selected' : '' ?>>.Here</option>
                             <option value="finolhu_here" <?= isset($user) && $user->card_theme=='finolhu_here' ? 'selected' : '' ?>>Finolhu &amp; .Here</option>
                         </select>
                     </div>

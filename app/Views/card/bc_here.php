@@ -59,7 +59,7 @@
         font-weight: bold;
         font-size: 1.8rem;
         margin-top: -15px;
-        margin-top: 5px;
+        margin-top: 20px;
         margin-left: 20px;
         /* margin-bottom: 0.1rem; */
         font-family: 'Moeda', Arial, sans-serif;
@@ -160,10 +160,10 @@
                     }
                 ?><?= esc($formattedPhone) ?> &bull; <?= esc($user->email) ?>
             </div>
-            <div class="row" style="margin-top: 5px;">
+            <div class="row" style="margin-top: 5px; margin-right: 10px;">
                 <div class="col-6"></div>
                 <div class="col-6">
-                    <img src="/assets/media/logo/here.png" alt="Logo" class="bc-logo mt-4">
+                    <img src="/assets/media/logo/here.png" alt="Logo" class="bc-logo mt-4 me-4">
                 </div>
             </div>
         </div>
@@ -172,23 +172,18 @@
     <div class="text-center mt-3">
         <ul class="list-inline mb-0">
             <li class="list-inline-item facebook" style="margin-left: 0px; font-size: 2rem;">
-                <a href="https://www.facebook.com/FinolhuMaldives" target="_blank" title="Facebook">
+                <a href="https://www.facebook.com/profile.php?id=61577687646689&mibextid=wwXIfr&mibextid=wwXIfr" target="_blank" title="Facebook">
                     <i class="fab fa-facebook"></i>
                 </a>
             </li>
-            <li class="list-inline-item twitter" style="margin-left: 20px; font-size: 2rem;">
-                <a href="http://twitter.com/finolhumv" target="_blank" title="Twitter">
-                    <i class="fab fa-twitter"></i>
+            <li class="list-inline-item instagram" style="margin-left: 20px; font-size: 2rem;">
+                <a href="https://www.instagram.com/_.herebaaatoll/profilecard/?igsh=azdzMXV5cXk0amtm" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
                 </a>
             </li>
             <li class="list-inline-item youtube" style="margin-left: 20px; font-size: 2rem;">
-                <a href="https://www.youtube.com/channel/UCR9otbxhk6F8EUW4Bjhd9Eg" target="_blank" title="Youtube">
-                    <i class="fab fa-youtube"></i>
-                </a>
-            </li>
-            <li class="list-inline-item instagram" style="margin-left: 20px; font-size: 2rem;">
-                <a href="https://www.instagram.com/finolhu_maldives/" target="_blank" title="Instagram">
-                    <i class="fab fa-instagram"></i>
+                <a href="https://www.here-maldives.com/" target="_blank" title="Website">
+                    <i class="fa-solid fa-globe"></i>
                 </a>
             </li>
         </ul>
