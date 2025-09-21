@@ -11,8 +11,23 @@ class IslanderController extends Controller
     public function index()
     {
         $islanderModel = new IslanderModel();
+        $cardModel = new CardModel();
+        $socialModel = new SocialModel();
+        $userModel = new \App\Models\UserModel();
+
         $islanders = $islanderModel->findAll();
-        return view('islanders/index', ['islanders' => $islanders]);
+        $islanderCount = $islanderModel->countAllResults();
+        $cardCount = $cardModel->countAllResults();
+        $socialCount = $socialModel->countAllResults();
+        $userCount = $userModel->countAllResults();
+
+        return view('islanders/index', [
+            'islanders' => $islanders,
+            'islanderCount' => $islanderCount,
+            'cardCount' => $cardCount,
+            'socialCount' => $socialCount,
+            'userCount' => $userCount,
+        ]);
     }
 
     public function create()

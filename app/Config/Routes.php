@@ -34,4 +34,4 @@ $routes->post('islanders/update/(:num)', 'IslanderController::update/$1');
 $routes->get('islanders/delete/(:num)', 'IslanderController::delete/$1');
 $routes->get('islanders/view/(:num)', 'IslanderController::view/$1');
 
-$routes->get('islanders/columns', 'IslanderController::showTableColumns');
+// $routes->get('islanders/columns', 'IslanderController::showTableColumns');

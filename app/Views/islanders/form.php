@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title><?= isset($islander) ? 'Edit Islander' : 'Add Islander' ?></title>
+        <link rel="icon" href="https://www.finolhu.com/wp-content/uploads/2019/04/cropped-finolhu-favicon-1-32x32.png" sizes="32x32" />
+    <link rel="icon" href="https://www.finolhu.com/wp-content/uploads/2019/04/cropped-finolhu-favicon-1-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="https://www.finolhu.com/wp-content/uploads/2019/04/cropped-finolhu-favicon-1-180x180.png" />
+    <meta name="msapplication-TileImage" content="https://www.finolhu.com/wp-content/uploads/2019/04/cropped-finolhu-favicon-1-270x270.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
     /* Match Select2 single select height to Bootstrap input */
@@ -110,6 +116,32 @@
     white-space: nowrap;
     }
 
+     .navbar-dashboard {
+            background: #3498b1;
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .navbar-dashboard .navbar-brand {
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+        }
+        .navbar-dashboard .nav-link {
+            color: #eaf6fa !important;
+            font-weight: 500;
+            font-size: 1rem;
+            margin-right: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        .navbar-dashboard .nav-link.active {
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .navbar-dashboard .fa {
+            margin-right: 6px;
+        }
 
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -119,7 +151,11 @@
     <script src="https://kit.fontawesome.com/734445d7bc.js" crossorigin="anonymous"></script>
 </head>
 <body class="bg-light">
+<?php include(APPPATH . 'Views/layouts/header.php'); ?>
 <div class="container py-4">
+    <div class="mb-3">
+        <a href="<?= site_url('islanders') ?>" class="btn btn-sm px-3 py-2" style="background:#3498b1;color:#fff;border:none;"><i class="fa fa-arrow-left me-1" style="color:#fff;"></i> Go Back</a>
+    </div>
     <h1><?= isset($islander) ? 'Edit Islander' : 'Add Islander' ?></h1>
     <form method="post" action="<?= isset($islander) ? site_url('islanders/update/'.$islander['id']) : site_url('islanders/store') ?>">
         <div class="mb-3">
@@ -152,7 +188,7 @@
             </div>
             <?php endforeach; endif; ?>
         </div>
-    <button type="button" class="btn btn-sm btn-success mb-2" onclick="addCardRow()">Add Card</button>
+    <button type="button" class="btn btn-sm px-3 py-2 mb-2" style="background:#3498b1;color:#fff;border:none;" onclick="addCardRow()"><i class="fa fa-plus me-1" style="color:#fff;"></i>Add Card</button>
     <hr>
     <h4>Card Previews</h4>
     <div id="cardPreviews" class="row mb-4"></div>
@@ -259,9 +295,11 @@
                 <div class="col-md-1 d-flex align-items-center"><button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">Remove</button></div>
             </div>
         </div>
-        <button type="button" class="btn btn-sm btn-success mb-2" onclick="addSocialRow()">Add Social</button>
-        <br><button type="submit" class="btn btn-primary">Save</button>
-        <a href="<?= site_url('islanders') ?>" class="btn btn-secondary">Cancel</a>
+    <button type="button" class="btn btn-sm px-3 py-2 mb-2" style="background:#3498b1;color:#fff;border:none;" onclick="addSocialRow()"><i class="fa fa-plus me-1" style="color:#fff;"></i>Add Social</button>
+    <div class="d-flex align-items-center mt-2 mb-4">
+        <button type="submit" class="btn btn-sm px-3 py-2 me-2" style="background:#3498b1;color:#fff;border:none;"><i class="fa fa-save me-1" style="color:#fff;"></i>Save</button>
+        <a href="<?= site_url('islanders') ?>" class="btn btn-sm px-3 py-2" style="background:#e0eaf6;color:#3498b1;border:none;"><i class="fa fa-times me-1" style="color:#3498b1;"></i>Cancel</a>
+    </div>
     </form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -333,7 +371,7 @@ function addCardRow() {
     row.innerHTML = '<div class="col-md-3"><input type="text" name="designation[]" class="form-control" placeholder="Designation"></div>' +
         '<div class="col-md-3"><input type="email" name="email[]" class="form-control" placeholder="Email"></div>' +
         '<div class="col-md-2"><input type="text" name="phone[]" class="form-control" placeholder="Phone"></div>' +
-        '<div class="col-md-3"><select name="theme[]" class="form-select"><option value="">Select Theme</option><option value="finolhu">Finolhu</option><option value="here">.Here</option><option value="finolhu_here">Finolhu & .Here</option></select></div>' +
+        '<div class="col-md-3"><select name="theme[]" class="form-select"><option value="finolhu">Select Theme</option><option value="finolhu">Finolhu</option><option value="here">.Here</option></select></div>' +
         '<div class="col-md-1 d-flex align-items-center"><button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">Remove</button></div>';
     cards.appendChild(row);
 }
@@ -386,5 +424,6 @@ function removeRow(btn) {
 }
 </script>
 </div>
+<?php include(APPPATH . 'Views/layouts/footer.php'); ?>
 </body>
 </html>
