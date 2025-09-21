@@ -1,0 +1,4 @@
+[20-Sep-2025 15:02:01 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "App\Controllers\BaseController" not found in C:\xampp\htdocs\abusinesscard\app\Controllers\CardController.php:9
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\abusinesscard\app\Controllers\CardController.php on line 9

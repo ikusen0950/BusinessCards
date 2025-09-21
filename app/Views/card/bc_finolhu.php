@@ -140,18 +140,17 @@
 
 <body>
     <div class="bc-card position-relative">
-        <div class="bc-name"><?= esc($user->username) ?></div>
-        <div class="bc-title"><?= strtoupper(esc($user->job_title)) ?></div>
-        <div class="bc-contact">
+        <div class="bc-name-finolhu"><?= esc($islander['full_name'] ?? '') ?></div>
+        <div class="bc-title-finolhu"><?= strtoupper(esc($card['designation'] ?? '')) ?></div>
+        <div class="bc-contact-finolhu">
             Phone <?php
-                // Format phone number as +960 730 6700
-                $phone = $user->phone;
+                $phone = $card['phone'] ?? '';
                 if (preg_match('/^(\+\d{3})(\d{3})(\d{4})$/', $phone, $matches)) {
                     $formattedPhone = $matches[1] . ' ' . $matches[2] . ' ' . $matches[3];
                 } else {
                     $formattedPhone = $phone;
                 }
-            ?><?= esc($formattedPhone) ?> &bull; <?= esc($user->email) ?>
+            ?><?= esc($formattedPhone) ?> &bull; <?= esc($card['email'] ?? '') ?>
         </div>
         <div class="row mt-2">
             <div class="col-6"></div>
@@ -191,8 +190,7 @@
         </ul>
 
         <div class="mt-3 d-flex justify-content-center gap-2">
-            <a href="<?= site_url('card/' . $user->card_token . '/vcard.vcf') ?>" class="btn" id="saveToPhoneBtn"
-                style="background-color: #38a8bb; color: #fff; width: 140px;">Save to Phone</a>
+            <!-- Remove vcard and link buttons for card preview, or update if needed -->
             <button type="button" class="btn" id="copyLinkBtn"
                 style="background-color: #38a8bb; color: #fff; width: 100px; height: 40px;">
                 Copy Link
@@ -224,7 +222,7 @@
 <script>
 // Copy card link to clipboard
 document.getElementById('copyLinkBtn').addEventListener('click', function() {
-    var link = "<?= site_url('card/' . $user->card_token) ?>";
+    // var link = "<?= site_url('card/' . $islander['token']) ?>";
     navigator.clipboard.writeText(link).then(function() {
         document.getElementById('copyLinkBtn').textContent = 'Copied!';
         setTimeout(function() {

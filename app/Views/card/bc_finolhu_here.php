@@ -77,7 +77,7 @@
 
     @font-face {
         font-family: 'Open Sans Regular';
-        src: url('/assets/media/fonts/Open_Sans_Regular.otf') format('opentype');
+        src: url('/assets/media/fonts/Open_Sans_Regular.ttf') format('opentype');
         font-weight: normal;
         font-style: normal;
     }

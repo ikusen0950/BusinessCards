@@ -7,45 +7,71 @@ use App\Libraries\VCardBuilder;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class CardController extends BaseController
+// ...existing code...
 {
     private function resolveByToken(string $token)
     {
-        $userModel = new UserModel();
-        $user = $userModel->where('card_token', $token)
-            ->where('(card_token_expires_at IS NULL OR card_token_expires_at > NOW())')
-            ->first();
-        if (!$user) {
+        $islanderModel = new \App\Models\IslanderModel();
+        $cardModel = new \App\Models\CardModel();
+        $socialModel = new \App\Models\SocialModel();
+        $islander = $islanderModel->where('token', $token)->first();
+        if (!$islander) {
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Card not found or expired');
         }
-        return $user;
+        $cards = $cardModel->where('islander_id', $islander['id'])->findAll();
+        $socials = $socialModel->where('islander_id', $islander['id'])->findAll();
+        // Attach cards and socials to islander object/array
+        $islander['cards'] = $cards;
+        $islander['socials'] = $socials;
+        return $islander;
     }
 
     public function show($token)
     {
-        $user = $this->resolveByToken($token);
-        // Increment views and update last opened
-        $userModel = new UserModel();
-        $user->card_views = ($user->card_views ?? 0) + 1;
-        $user->card_last_opened_at = date('Y-m-d H:i:s');
-        $userModel->save($user);
-        $theme = strtolower($user->card_theme);
-        if ($theme === 'finolhu') {
-            return view('card/bc_finolhu', ['user' => $user]);
-        } elseif ($theme === 'finolhu_here') {
-            return view('card/bc_finolhu_here', ['user' => $user]);
-        } elseif ($theme === 'here') {
-            return view('card/bc_here', ['user' => $user]);
-        }
-        return view('card/show', ['user' => $user]);
+    $islander = $this->resolveByToken($token);
+    // Always show all cards and socials/icons for the islander
+    return view('card/show', ['islander' => $islander]);
     }
 
     public function vcard($token)
     {
-        $user = $this->resolveByToken($token);
-        $vcard = VCardBuilder::fromUser($user);
+        $islanderModel = new \App\Models\IslanderModel();
+        $cardModel = new \App\Models\CardModel();
+        $islander = $islanderModel->where('token', $token)->first();
+        if (!$islander) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound('Card not found or expired');
+        }
+        $cards = $cardModel->where('islander_id', $islander['id'])->findAll();
+        $fullName = $islander['full_name'] ?? '';
+        $designations = [];
+        $emails = [];
+        $phones = [];
+        foreach ($cards as $card) {
+            if (!empty($card['designation']) && !in_array($card['designation'], $designations)) {
+                $designations[] = $card['designation'];
+            }
+            if (!empty($card['email']) && !in_array($card['email'], $emails)) {
+                $emails[] = $card['email'];
+            }
+            if (!empty($card['phone']) && !in_array($card['phone'], $phones)) {
+                $phones[] = $card['phone'];
+            }
+        }
+        $vcard = "BEGIN:VCARD\nVERSION:3.0\n";
+        $vcard .= "FN:" . $fullName . "\n";
+        foreach ($designations as $designation) {
+            $vcard .= "TITLE:" . $designation . "\n";
+        }
+        foreach ($phones as $phone) {
+            $vcard .= "TEL;TYPE=CELL:" . $phone . "\n";
+        }
+        foreach ($emails as $email) {
+            $vcard .= "EMAIL;TYPE=INTERNET:" . $email . "\n";
+        }
+        $vcard .= "END:VCARD\n";
         return $this->response
             ->setHeader('Content-Type','text/vcard; charset=utf-8')
-            ->setHeader('Content-Disposition', 'attachment; filename="' . $user->username . '.vcf"')
+            ->setHeader('Content-Disposition', 'attachment; filename="' . $fullName . '.vcf"')
             ->setBody($vcard);
     }
 

@@ -149,17 +149,18 @@
                 style="width: 50px; height: 250px; object-fit: cover; display: block; margin: 0; padding: 0;">
         </div>
         <div style="flex: 1; padding-left: 0;">
-            <div class="bc-name-here"><?= esc($islander['full_name'] ?? '') ?></div>
-            <div class="bc-title-here"><?= strtoupper(esc($card['designation'] ?? '')) ?></div>
-            <div class="bc-contact-here">
+            <div class="bc-name"><?= esc($user->username) ?></div>
+            <div class="bc-title"><?= strtoupper(esc($user->job_title)) ?></div>
+            <div class="bc-contact">
                 Phone <?php
-                    $phone = $card['phone'] ?? '';
+                    // Format phone number as +960 730 6700
+                    $phone = $user->phone;
                     if (preg_match('/^(\+\d{3})(\d{3})(\d{4})$/', $phone, $matches)) {
                         $formattedPhone = $matches[1] . ' ' . $matches[2] . ' ' . $matches[3];
                     } else {
                         $formattedPhone = $phone;
                     }
-                ?><?= esc($formattedPhone) ?> &bull; <?= esc($card['email'] ?? '') ?>
+                ?><?= esc($formattedPhone) ?> &bull; <?= esc($user->email) ?>
             </div>
             <div class="row" style="margin-top: 5px; margin-right: 10px;">
                 <div class="col-6"></div>
